@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-  <h1>{{ title }}</h1>
+  <h1 class="text-danger">{{ title }}</h1>
 </template>
 
-<style></style>
+<style lang="scss"></style>
