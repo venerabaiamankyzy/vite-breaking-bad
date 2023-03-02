@@ -13,8 +13,4 @@ export default {
   </main>
 </template>
 
-<style lang="scss" scoped>
-.container {
-  background-color: white;
-}
-</style>
+<style lang="scss" scoped></style>

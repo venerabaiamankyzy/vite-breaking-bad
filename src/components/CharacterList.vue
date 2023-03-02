@@ -19,60 +19,103 @@ export default {
 };
 </script>
 <template>
-  <div class="container">
-    <section class="mt-4 px-3 pb-3">
-      <div class="banner">
-        <h4>Found {{ characters.length }} cards</h4>
-      </div>
-      <div class="row row-cols-2 row-cols-md-5 g-4 px-3">
-        <div v-for="character in characters" class="col text-center bg-orange">
-          <div class="bg-card">
-            <div v-for="characterimage in character.card_images">
+  <section class="main position-relative">
+    <div class="dropdown position-absolute">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Alien
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </div>
+    <div class="container">
+      <div class="center-content">
+        <div class="banner">
+          <p>Founded {{ characters.length }} cards</p>
+        </div>
+        <div
+          class="row row-cols-2 row-cols-md-6 gap-5 justify-content-center align-items-center"
+        >
+          <div v-for="character in characters" class="col">
+            <div class="image" v-for="characterimage in character.card_images">
               <img
                 class="img-fluid"
                 :src="characterimage.image_url"
                 alt="cards"
               />
             </div>
-            <div class="card-info">
-              <h3>{{ character.name }}</h3>
-              <span>{{ character.archetype }}</span>
+
+            <div
+              class="desc d-flex flex-column gap-3 align-items-center justify-content-between"
+            >
+              <h3 class="text-center">{{ character.name }}</h3>
+              <p>{{ character.archetype }}</p>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </template>
 
 <style lang="scss" scope>
 @use "../assets/scss/partials/_variables.scss" as *;
+.main {
+  min-height: 100vh;
+  border: 80px solid $bg-main-color;
+
+  .img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+.center-content {
+  padding: 20px;
+}
+
 .banner {
   background-color: $bg-black;
   color: white;
-  padding: 16px 20px;
+  padding: 20px;
+  margin-top: 30px;
 }
-.bg-card {
-  background-color: $bg-main-color;
-  padding: 0;
-  min-height: 400px;
+.row {
+  padding: 0 6px;
 
-  img {
-    width: 80%;
-  }
-  .card-info {
-    text-align: center;
+  .col {
+    background-color: $bg-main-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 10px;
+    min-height: 400px;
 
     h3 {
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      color: white;
-      padding-top: 10px;
-    }
-
-    span {
       font-size: 1rem;
+      color: aliceblue;
     }
   }
+}
+
+.dropdown {
+  left: 9px;
+  top: -6%;
+}
+
+.btn {
+  background-color: aliceblue;
+  border: 1px solid aliceblue;
+  color: $bg-black;
+  padding: 6px 50px;
+  text-align: left;
 }
 </style>
