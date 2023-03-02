@@ -38,7 +38,7 @@ export default {
     <div class="container">
       <div class="center-content">
         <div class="banner">
-          <p>Founded {{ characters.length }} cards</p>
+          <p class="mb-0">Founded {{ characters.length }} cards</p>
         </div>
         <div
           class="row row-cols-2 row-cols-md-6 gap-5 justify-content-center align-items-center"
