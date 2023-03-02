@@ -1,20 +1,15 @@
 <script>
-import axios from "axios";
+import CharacterCard from "./CharacterCard.vue";
+import { store } from "../data/store";
 
 export default {
   data() {
     return {
-      characters: [],
+      store,
     };
   },
-
-  created() {
-    axios
-      .get("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=10&offset=0")
-      .then((response) => {
-        console.log(response);
-        this.characters = response.data.data;
-      });
+  components: {
+    CharacterCard,
   },
 };
 </script>
@@ -38,27 +33,18 @@ export default {
     <div class="container">
       <div class="center-content">
         <div class="banner">
-          <p class="mb-0">Founded {{ characters.length }} cards</p>
+          <p class="mb-0">Founded {{ store.characters.length }} cards</p>
         </div>
         <div
           class="row row-cols-2 row-cols-md-6 gap-5 justify-content-center align-items-center"
         >
-          <div v-for="character in characters" class="col">
-            <div class="image" v-for="characterimage in character.card_images">
-              <img
-                class="img-fluid"
-                :src="characterimage.image_url"
-                alt="cards"
-              />
-            </div>
-
-            <div
-              class="desc d-flex flex-column gap-3 align-items-center justify-content-between"
-            >
-              <h3 class="text-center">{{ character.name }}</h3>
-              <p>{{ character.archetype }}</p>
-            </div>
-          </div>
+          <CharacterCard
+            v-for="character in store.characters"
+            :key="character.id"
+            :pic="character.card_images[0].image_url"
+            :name="character.name"
+            :type="character.type"
+          />
         </div>
       </div>
     </div>
@@ -78,30 +64,31 @@ export default {
 }
 .center-content {
   padding: 20px;
-}
 
-.banner {
-  background-color: $bg-black;
-  color: white;
-  padding: 20px;
-  margin-top: 30px;
-}
-.row {
-  padding: 0 6px;
+  .banner {
+    background-color: $bg-black;
+    color: white;
+    padding: 20px;
+    margin-top: 30px;
+  }
 
-  .col {
-    background-color: $bg-main-color;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 10px;
-    min-height: 400px;
+  .row {
+    padding: 0 6px;
 
-    h3 {
-      font-size: 1rem;
-      color: aliceblue;
+    .col {
+      background-color: $bg-main-color;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 10px;
+      min-height: 400px;
+
+      h3 {
+        font-size: 1rem;
+        color: aliceblue;
+      }
     }
   }
 }

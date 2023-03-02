@@ -1,6 +1,9 @@
 <script>
 import CharacterList from "./CharacterList.vue";
 export default {
+  props: {
+    characters: Array,
+  },
   components: {
     CharacterList,
   },
@@ -9,7 +12,7 @@ export default {
 
 <template>
   <main>
-    <CharacterList />
+    <CharacterList :characters="characters" />
   </main>
 </template>
 
